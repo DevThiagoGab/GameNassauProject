@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CoracaoSystem : MonoBehaviour
@@ -54,9 +55,8 @@ public class CoracaoSystem : MonoBehaviour
     void Dead() 
     {
         if(vida <= 0) 
-        { 
-            GetComponent<MovimentoPersonagem>().enabled = false;
-            Destroy(gameObject, 1.0f);
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 

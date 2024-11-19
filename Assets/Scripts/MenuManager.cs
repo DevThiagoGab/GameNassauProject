@@ -5,32 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
-    [SerializeField] private string nomeDoLevelDejogo;
-    [SerializeField] private GameObject painelMenuinicial;
+    [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelOpcoes;
 
-    public void Jogar() 
+    public void Jogar(string nomeDolevelDeJogo) 
     {
-        SceneManager.LoadScene(nomeDoLevelDejogo);
+        SceneManager.LoadScene(nomeDolevelDeJogo);
     }
 
+    /*
     public void AbrirOpcoes() 
     {
-        painelMenuinicial.SetActive(false);
+        painelMenuInicial.SetActive(false);
         painelOpcoes.SetActive(true);
     }
 
     public void FecharOpcoes() 
     {
         painelOpcoes.SetActive(false);
-        painelMenuinicial.SetActive(true);
+        painelMenuInicial.SetActive(true);
     }
+    */
 
     public void SairDoJogo() 
     {
         Debug.Log("Sair do Jogo");
         Application.Quit();
+    }
+
+    public void VoltarParaMenu(string nomeDoMenuPrincipal)
+    {
+        SceneManager.LoadScene(nomeDoMenuPrincipal);
     }
 
 }
