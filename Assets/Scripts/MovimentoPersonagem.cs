@@ -15,9 +15,11 @@ public class MovimentoPersonagem : MonoBehaviour
     [SerializeField] private int velocidadeDoPersonagem = 5; // variável para alterar velocidade do personagem
     [SerializeField] private Transform peDoPersonagem;
     [SerializeField] private LayerMask chaoLayer;
+    [SerializeField] private LayerMask obstaculoLayer;
 
     // variável verdadeira quando o personagem estiver no chão e falsa quando o personagem não estiver mais encostando no chão
     private bool estaNoChao;
+    private bool estaNoObstaculo;
 
     // constante de força de pulo, movida para uma variável para facilitar ajustes
     private float forcaPulo = 650f;
@@ -47,13 +49,16 @@ public class MovimentoPersonagem : MonoBehaviour
 
         // Verificar se o personagem está no chão
         estaNoChao = Physics2D.OverlapCircle(peDoPersonagem.position, 0.2f, chaoLayer);
+        estaNoObstaculo = Physics2D.OverlapCircle(peDoPersonagem.position, 0.2f, obstaculoLayer);
 
         /*Encontrei problemas na hora de pular então fiz o console retornar para verificar se o chão estava sendo reconhecido*/
 
         // Mostrar no console se o personagem está no chão
         Debug.Log("Está no chão: " + estaNoChao);
+        // Mostrar no console se o personagem está no obstaculo
+        Debug.Log("Está no obstáculo: " + estaNoObstaculo);
 
-        if (Input.GetKeyDown(KeyCode.Space) && estaNoChao) // Só permite o pulo se a tecla for pressionada e o personagem estiver no chão
+        if (Input.GetKeyDown(KeyCode.Space) && (estaNoChao || estaNoObstaculo)) // Só permite o pulo se a tecla for pressionada e o personagem estiver no chão
         {
             // Mostrar no console que o personagem está tentando pular
             Debug.Log("Pulo acionado");
